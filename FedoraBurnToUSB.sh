@@ -11,6 +11,8 @@ echo "-----------------------------------"
 echo ""
 #get the .iso file and ask spin from user
 
+echo "As of now the checksum checks for the Fedora Spins do not work so to save time just select 0"
+
 echo "Pick the spin for Fedora:"
 echo "Fedora Workstation --------- 0"
 echo "Fedora KDE ----------------- 1"
@@ -26,7 +28,7 @@ read spinType
 if [ "$spinType" == "0" ]; then
   echo "Installing Fedora Workstation ..."
   wget https://download.fedoraproject.org/pub/fedora/linux/releases/31/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-31-1.9.iso
-  wget https://arm.fedoraproject.org/static/checksums/Fedora-Workstation-31-1.9-armhfp-CHECKSUM
+  wget https://getfedora.org/static/checksums/Fedora-Workstation-31-1.9-x86_64-CHECKSUM
 elif [ "$spinType" == "1" ]; then
   echo "Installing Fedora KDE ..."
   wget https://download.fedoraproject.org/pub/fedora/linux/releases/31/Spins/x86_64/iso/Fedora-KDE-Live-x86_64-31-1.9.iso
@@ -41,7 +43,7 @@ elif [ "$spinType" == "3" ]; then
   wget https://arm.fedoraproject.org/static/checksums/Fedora-Spins-31-1.9-armhfp-CHECKSUM
 elif [ "$spinType" == "4" ]; then
   echo "Installing Fedora MATE-Compiz"
-  #wget https://download.fedoraproject.org/pub/fedora/linux/releases/31/Spins/x86_64/iso/Fedora-MATE_Compiz-Live-x86_64-31-1.9.iso
+  wget https://download.fedoraproject.org/pub/fedora/linux/releases/31/Spins/x86_64/iso/Fedora-MATE_Compiz-Live-x86_64-31-1.9.iso
   wget https://arm.fedoraproject.org/static/checksums/Fedora-Spins-31-1.9-armhfp-CHECKSUM
 elif [ "$spinType" == "5" ]; then
   echo "Installing Fedora Cinnamon"
@@ -137,6 +139,6 @@ usbDir=${usbDir:21}
 
 echo "This may take a while. Do not shut down the program until the success message appears."
 
-rsync --info=progress2 "$isoFile" "$usbDir"
+cp "$isoFile" "$usbDir"
 
 echo "Success!"
